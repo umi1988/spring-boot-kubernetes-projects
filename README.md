@@ -6,7 +6,7 @@ common cmds used related to kubernetes deployment :-
 
 1> create a application build
 
-**mvn clen install -Dmaven.skip.test**
+**mvn clean install -Dmaven.skip.test**
 
 2> create docker image first
 
