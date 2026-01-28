@@ -90,6 +90,42 @@ spring-boot-kubernetes-example-service   NodePort   10.171.328.191   <none>     
 
 **kubectl port-forward svc/spring-boot-kubernetes-example-service 8080:8080**
 
+14> configure agrocd(Argo CD is a declarative, GitOps continuous delivery (CD) tool specifically built for Kubernetes. 
+At its core, it acts as a Kubernetes controller that continuously monitors your Git repositories for any changes to your application manifests (YAML, Helm charts, or Kustomize files)) app in kubernetes
+
+cmd to create agrocd namespace
+
+kubectl create namespace argocd
+
+o/p - namespace/argocd created
+
+15> Install Argo CD components and CRDs(Custom Resource Definitions)
+
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+
+16> Verify the CRDs are Installed
+
+kubectl get crds | grep argoproj.io
+
+we should see applications.argoproj.io in the list.
+
+17> apply your app.yaml file
+
+kubectl apply -f k8s-app.yaml
+
+18> Access the Argo CD UI
+
+Since you are on Docker Desktop, you can access the dashboard to see your application status: 
+
+cmd for Port Forward: 
+
+kubectl port-forward svc/argocd-server -n argocd 8080:443
+
+cmd for Get Password: 
+
+kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d; echo
+
+Login: Open https://localhost:8080 with username admin and generated pwds
 
 
 
