@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: spring-boot-k8s-scheduler-example
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: "<from_email@gmail.com>"
+    password: "<gmail app pwd>"
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+report:
+  send:
+    email:
+      toList: <sender_email@gmail.com>
+
+server:
+  port: 9191

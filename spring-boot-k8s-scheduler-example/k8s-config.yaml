@@ -1,0 +1,25 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: reporting-job
+spec:
+  schedule: "*/2 * * * *"
+  #concurrencyPolicy: Forbid            # Prevents overlapping if a job takes >2 mins
+  successfulJobsHistoryLimit: 1
+  failedJobsHistoryLimit: 5
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: reporting-job
+              image: k8s-job-example:latest
+              imagePullPolicy: IfNotPresent
+#              resources:               # Added for better cluster scheduling
+#                requests:
+#                  memory: "64Mi"
+#                  cpu: "250m"
+#                limits:
+#                  memory: "128Mi"
+#                  cpu: "500m"
+          restartPolicy: OnFailure
