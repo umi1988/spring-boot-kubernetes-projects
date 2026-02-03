@@ -58,4 +58,4 @@ myapp-chart-spring-app-chart   NodePort   10.51.81.91   <none>        8080:30483
     http://localhost:<NodePort>
     http://localhost:30483
 
-Refer the attached screenshot for more clarity.
+Refer the attached screenshot in resource directory for more clarity.
